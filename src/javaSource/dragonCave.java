@@ -1,4 +1,5 @@
 import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class dragonCave {
@@ -10,8 +11,8 @@ public class dragonCave {
         System.out.println("is greedy and hungry and will eat you on sight.");
         System.out.println("\nWhich cave will you go into? Please enter 1 or 2 : \n\n");
 
-
-        int userInput = classUserInput();
+        Scanner in = new Scanner(System.in);
+        int userInput = classUserInput(in);
 
         String opt1 = "\n\nYou approach the cave... \nIt is dark and spooky... \n" + //option 1 prompt
                 "A large dragon jumps out in front of you! He opens his jaws and... \n" +
@@ -28,20 +29,20 @@ public class dragonCave {
 
     }
 
-    public static int classUserInput() {
-        Scanner in = new Scanner(System.in); //scanner
+    public static int classUserInput(Scanner in) {
         int input;
         while (true){
             try {
                 input = in.nextInt(); //grab the user input
                 if(input == 1 || input == 2){ //if it's 1 or 2 then break
+                    System.out.println("returning " + input);
                     return input;
                 }
 
             }
-            catch (InputMismatchException e){ //catch if strings or characters are inserted then loopback instead of crashing
+            catch (NoSuchElementException e){ //catch if strings or characters are inserted then loopback instead of crashing
                 System.out.println("\nStrings cannot be accepted!");
-                in.nextLine();
+                in.nextLine(); //consume that input and try again
             }
 
             System.out.println("\nPlease only choose between 1 or 2: ");
