@@ -8,25 +8,10 @@ public class dragonCave {
         System.out.println("you see two caves. In one cave, the dragon is friendly");
         System.out.println("and will share his treasure with you. The other dragon");
         System.out.println("is greedy and hungry and will eat you on sight.");
-        System.out.println("Which cave will you go into? Please enter 1 or 2 : \n\n");
+        System.out.println("\nWhich cave will you go into? Please enter 1 or 2 : \n\n");
 
 
-        Scanner in = new Scanner(System.in); //scanner
-        int input;
-        while (true){
-            try {
-                 input = in.nextInt(); //grab the user input
-                if(input == 1 || input == 2){ //if it's 1 or 2 then break
-                    break;
-                }
-            }
-            catch (InputMismatchException e){ //catch if strings or characters are inserted then loopback instead of crashing
-                in.nextLine(); //consume the input so that we would not loop forever
-            }
-
-            System.out.println("\nPlease only choose between 1 or 2: ");
-
-        }
+        int userInput = classUserInput();
 
         String opt1 = "\n\nYou approach the cave... \nIt is dark and spooky... \n" + //option 1 prompt
                 "A large dragon jumps out in front of you! He opens his jaws and... \n" +
@@ -35,11 +20,32 @@ public class dragonCave {
                 "A large dragon jumps out in front of you! He opens his jaws and...\n" +
                 "Vomits a mouthful of treasure to share with you.";
 
-        String output = input == 1 ? opt1 : opt2; //it's generally safe that only 1 or 2 got to this point
+        String output = userInput == 1 ? opt1 : opt2; //it's generally safe that only 1 or 2 got to this point
 
         System.out.println(output);
 
         System.exit(0);
 
+    }
+
+    public static int classUserInput() {
+        Scanner in = new Scanner(System.in); //scanner
+        int input;
+        while (true){
+            try {
+                input = in.nextInt(); //grab the user input
+                if(input == 1 || input == 2){ //if it's 1 or 2 then break
+                    return input;
+                }
+
+            }
+            catch (InputMismatchException e){ //catch if strings or characters are inserted then loopback instead of crashing
+                System.out.println("\nStrings cannot be accepted!");
+                in.nextLine();
+            }
+
+            System.out.println("\nPlease only choose between 1 or 2: ");
+
+        }
     }
 }
