@@ -35,7 +35,6 @@ public class dragonCave {
             try {
                 input = in.nextInt(); //grab the user input
                 if(input == 1 || input == 2){ //if it's 1 or 2 then break
-                    System.out.println("returning " + input);
                     return input;
                 }
 
